@@ -1,0 +1,97 @@
+services:
+
+  app:
+    build: .
+    container_name: sistema_requisiciones_app
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/var/www/html
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_NAME=sistema_requisiciones
+      - PYTHON_PATH=/opt/pymupdf-env/bin/python3
+      - REDIS_HOST=redis
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: sistema_requisiciones_redis
+    # Sin puerto publicado -- solo alcanzable desde la red interna de Docker
+    # (app/backup lo usan por nombre de servicio), igual que db/phpmyadmin
+    # quedaron restringidos a localhost.
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.4
+    container_name: sistema_requisiciones_db
+    command: --sql-mode="NO_ENGINE_SUBSTITUTION"
+    ports:
+      # Solo localhost -- root/root no debe quedar alcanzable desde la red local.
+      - "127.0.0.1:3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=sistema_requisiciones
+      - MYSQL_ROOT_HOST=%
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backup:
+    image: mariadb:10.4
+    container_name: sistema_requisiciones_backup
+    entrypoint: ["/bin/sh", "/scripts/backup_loop.sh"]
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_NAME=sistema_requisiciones
+      - BACKUP_RETENTION_DIAS=14
+    volumes:
+      - ./scripts:/scripts:ro
+      - ./backups:/backups
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: sistema_requisiciones_pma
+    ports:
+      # Solo localhost -- misma razón que db: root/root no debe ser alcanzable
+      # desde otras máquinas en la red local.
+      - "127.0.0.1:8081:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  redis_data:

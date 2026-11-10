@@ -1,0 +1,116 @@
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE GLOBAL — Sistema EMPRESA EJEMPLO
+   Breakpoints: 768px (tablet) | 480px (móvil)
+══════════════════════════════════════════════════════ */
+
+/* ── Viewport meta asegurado vía CSS ── */
+@viewport { width: device-width; }
+
+/* ── Tablas horizontalmente scrolleables en móvil ── */
+.table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* ── MOBILE GENERAL ── */
+@media (max-width: 768px) {
+
+  /* Body / layout base */
+  body { overflow-x: hidden !important; }
+
+  /* Top headers */
+  .top-header { padding: 0 14px !important; }
+  .top-header .brand { font-size: .9rem !important; }
+  .back-button-header { padding: 6px 12px !important; font-size: .75rem !important; }
+  .user-name { display: none; }
+
+  /* Contenido principal */
+  .section-content { padding: 0 12px 20px !important; }
+  .sticky-container { padding: 10px 0 !important; }
+  .header-row { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
+  .header-row h2 { font-size: 1.1rem !important; }
+
+  /* Filtros */
+  .filtros-bar { flex-direction: column !important; }
+  .filtro-input { min-width: 100% !important; width: 100% !important; }
+  .filtro-grupo { width: 100% !important; }
+
+  /* Botones */
+  .btn-sm { font-size: .72rem !important; padding: 5px 8px !important; }
+
+  /* Cards de proyectos */
+  .proy-card-header { flex-wrap: wrap !important; }
+  .proy-nombre { font-size: .88rem !important; }
+
+  /* Tablas BOM */
+  .bom-table { font-size: .72rem !important; }
+  .bom-table th, .bom-table td { padding: 5px 7px !important; }
+  .items-table { font-size: .75rem !important; }
+  .items-table th, .items-table td { padding: 6px 8px !important; }
+
+  /* Cards del menú */
+  .cards-grid { gap: 16px !important; }
+  .nav-card { width: 140px !important; }
+  .card-icon i { font-size: 3rem !important; }
+
+  /* Modales */
+  .modal, .modal-wide { width: 95vw !important; max-width: 95vw !important; }
+
+  /* Split views horizontales → columnas */
+  .proy-split-wrap { flex-direction: column !important; height: auto !important; }
+  .proy-split-panel.panel-form,
+  .proy-split-panel.panel-pdf { margin: 0 0 10px 0 !important; height: 400px !important; }
+  .psp-body iframe { height: 350px !important; }
+
+  /* Resumen overlay */
+  .resumen-overlay { padding: 0 12px 16px !important; }
+  .resumen-upload-card { padding: 20px 16px !important; }
+
+  /* Footer */
+  .dashboard-footer { padding: 10px 14px !important; }
+  .footer-left { gap: 12px !important; font-size: .72rem !important; }
+
+  /* Detalle de proyecto */
+  .detalle-overlay { padding: 0 10px 16px !important; }
+  .detalle-header { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
+  .area-cards { grid-template-columns: 1fr 1fr !important; }
+  .timeline-wrap { padding: 6px 0 !important; }
+  .tl-item { min-width: 70px !important; }
+  .tl-label { font-size: .6rem !important; }
+  .tl-fecha { font-size: .58rem !important; }
+
+  /* Plan de inspección table */
+  .plan-table { font-size: .7rem !important; min-width: 700px !important; }
+  div:has(> .plan-table) { overflow-x: auto !important; }
+
+  /* Compras */
+  .erp-table { font-size: .75rem !important; }
+  .erp-table th, .erp-table td { padding: 6px 8px !important; }
+  .step-indicator { overflow-x: auto !important; }
+  .step-item { min-width: 80px !important; font-size: .65rem !important; }
+
+  /* Ingeniería split view → columnas */
+  .split-view-container { flex-direction: column !important; height: auto !important; }
+  .split-panel { min-height: 280px !important; }
+
+  /* Almacén tablas */
+  .req-table { font-size: .75rem !important; }
+  table { word-break: break-word; }
+
+  /* OC / Orden compra */
+  .op-screen-wrap { max-width: 100% !important; padding: 8px !important; }
+  .op-doc { font-size: .72rem !important; }
+  .op-cl-wrapper { grid-template-columns: 1fr !important; }
+
+  /* BOM split view */
+  .split-view-container { height: auto !important; }
+}
+
+@media (max-width: 480px) {
+  .nav-card { width: 115px !important; }
+  .card-icon i { font-size: 2.4rem !important; }
+  .card-title { font-size: 1rem !important; }
+  .page-title { font-size: 1.6rem !important; }
+  .page-title strong { font-size: 1.8rem !important; }
+  .area-cards { grid-template-columns: 1fr !important; }
+  .btn { font-size: .75rem !important; padding: 6px 10px !important; }
+  .badge { font-size: .62rem !important; padding: 2px 6px !important; }
+  .header-row .btn { width: 100% !important; justify-content: center !important; }
+}

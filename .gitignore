@@ -1,0 +1,41 @@
+# Archivos subidos por usuarios (datos reales, no código)
+# /uploads/* (no /uploads/) para que la excepción de abajo pueda funcionar --
+# con /uploads/ a secas, git ignora el directorio completo y ni revisa negaciones.
+/uploads/*
+# ...excepto el .htaccess que desactiva ejecución de PHP ahí -- es control de
+# seguridad, no dato de usuario, y tiene que sobrevivir a un clone/install nuevo.
+!/uploads/.htaccess
+
+# Logs de la aplicación
+/logs/*
+!/logs/.htaccess
+
+# Dumps de base de datos con datos reales (el esquema vacío vive en database/)
+/*.sql
+/backups/
+/inventario_import.json
+
+# Marcador de instalación completada (install.php) -- estado de runtime, no código
+/includes/.install.lock
+
+# Secretos reales (API keys) -- ver .env.example para la plantilla sin valores
+/.env
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Dependencias
+/vendor/
+/node_modules/
+
+# Fuentes con licencia propietaria (Arial de Microsoft, EULA no permite redistribuirla) -- cada
+# entorno la copia de su propio Windows/Office con licencia (C:\Windows\Fonts\arial*.ttf).
+# api/vista_pdf_fat_protocolo.php cae de vuelta a la fuente libre de mPDF si no encuentra estos
+# archivos, así que su ausencia no rompe nada, solo se ve un poco distinto al Word real.
+/fonts/*
+!/fonts/.gitkeep
+
+# Reportes de cobertura de pruebas (PHPUnit)
+/.phpunit.cache/
+/coverage/

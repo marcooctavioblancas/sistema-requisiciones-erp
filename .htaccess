@@ -1,0 +1,33 @@
+# Docker monta TODO el directorio del proyecto como webroot (docker-compose.yml
+# ".:/var/www/html"), así que un .dockerignore no alcanza -- cualquier archivo en
+# este directorio es servible por HTTP salvo que se bloquee aquí explícitamente.
+
+# Cualquier ruta con un segmento que empiece con punto -- .git/ (repo completo,
+# reconstruible por HTTP tipo git-dumper sin ninguna otra vulnerabilidad de por
+# medio), .claude/, .superpowers/, .env, etc. RedirectMatch evalúa la URL
+# completa (no solo el nombre del archivo pedido), así que esto sí bloquea
+# también archivos DENTRO de esas carpetas (ej. /.git/config), a diferencia de
+# un <FilesMatch> que solo mira el último segmento del path.
+RedirectMatch 404 (^|/)\.
+
+# Dumps de BD (tabla usuarios con hashes de contraseña, datos reales de clientes)
+<FilesMatch "\.sql$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Documento de trabajo de esta auditoría -- no debe quedar servible por URL.
+<FilesMatch "^AUDITORIA_SEGURIDAD\.md$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

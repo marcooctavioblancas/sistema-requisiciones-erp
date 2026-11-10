@@ -1,0 +1,6 @@
+# Los scripts con shebang (#!/bin/sh, #!/usr/bin/env php) se rompen si git les
+# mete CRLF al hacer checkout en Windows (core.autocrlf=true) -- el kernel
+# busca un intérprete llamado literalmente "sh\r" y falla con "no such file or
+# directory", un error confuso que no menciona line endings para nada. Forzar
+# LF real independientemente de la config local de quien clona.
+*.sh text eol=lf

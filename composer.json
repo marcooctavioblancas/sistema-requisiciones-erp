@@ -1,0 +1,13 @@
+{
+    "name": "empresa/sistema-requisiciones",
+    "description": "Sistema de Requisiciones -- mpdf/mpdf es la única dependencia de producción (genera api/vista_pdf_fat_protocolo.php con números de página e índice reales; el resto de la app no usa dependencias de Composer).",
+    "require": {
+        "mpdf/mpdf": "^8.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

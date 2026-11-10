@@ -1,0 +1,12 @@
+# Los .log crudos no deben ser descargables por URL directa (ia_debug.log trae
+# datos reales de clientes) -- ver_log.php (el visor, con isAdmin() propio)
+# sigue funcionando normal, esto solo bloquea los archivos .log en sí.
+<FilesMatch "\.log$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

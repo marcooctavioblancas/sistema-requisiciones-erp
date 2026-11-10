@@ -1,0 +1,458 @@
+/* ── Google Fonts ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Figtree:wght@400;500;600&display=swap');
+
+/* ── CSS Variables — Light ────────────────────────────── */
+:root {
+  --primary:       #1B2D4E;
+  --primary-light: #1B2D4E;
+  --primary-dim:   rgba(2, 55, 96, 0.12);
+  --accent:        #FF9800;
+  --accent-dim:    rgba(255, 152, 0, 0.15);
+  --danger:        #f44336;
+  --danger-dim:    rgba(244, 67, 54, 0.12);
+  --success:       #4CAF50;
+  --success-dim:   rgba(76, 175, 80, 0.12);
+  --warning:       #FF9800;
+  --warning-dim:   rgba(255, 152, 0, 0.15);
+  --info:          #2196F3;
+  --info-dim:      rgba(33, 150, 243, 0.12);
+
+  --bg:            #f4f6f9;
+  --surface:       #ffffff;
+  --surface-2:     #f9fafb;
+  --border:        #e0e0e0;
+
+  --text-1:        #1a1a2e;
+  --text-2:        #555555;
+  --text-3:        #999999;
+
+  --shadow:        0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg:     0 8px 32px rgba(0,0,0,0.14);
+
+  --radius:        8px;
+  --radius-lg:     12px;
+}
+
+/* ── CSS Variables — Dark ─────────────────────────────── */
+[data-theme="dark"] {
+  --primary:       #4a9fd4;
+  --primary-light: #2a7ab8;
+  --primary-dim:   rgba(74, 159, 212, 0.15);
+  --accent:        #FF9800;
+  --accent-dim:    rgba(255, 152, 0, 0.18);
+  --danger:        #ef5350;
+  --danger-dim:    rgba(239, 83, 80, 0.15);
+  --success:       #66BB6A;
+  --success-dim:   rgba(102, 187, 106, 0.15);
+  --warning:       #FFA726;
+  --warning-dim:   rgba(255, 167, 38, 0.18);
+  --info:          #42A5F5;
+  --info-dim:      rgba(66, 165, 245, 0.15);
+
+  --bg:            #0d1b2a;
+  --surface:       #112233;
+  --surface-2:     #0d1b2a;
+  --border:        #1e3a5f;
+
+  --text-1:        #e8eaf6;
+  --text-2:        #9eaec4;
+  --text-3:        #5a7a9a;
+
+  --shadow:        0 2px 12px rgba(0,0,0,0.35);
+  --shadow-lg:     0 8px 32px rgba(0,0,0,0.55);
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: 'Figtree', sans-serif !important;
+  background: var(--bg) !important;
+  color: var(--text-1);
+  transition: background 0.3s, color 0.3s;
+}
+
+h1, h2, h3,
+.modal-title,
+.section-title,
+.panel-title,
+.panel-header h3,
+.proy-folder-header h3 {
+  font-family: 'Syne', sans-serif !important;
+}
+
+/* ── Navbar ────────────────────────────────────────────── */
+.app-header,
+.main-header,
+.top-header,
+header.main-header {
+  background: linear-gradient(135deg, #023760, #005686) !important;
+  transition: background 0.3s;
+}
+
+/* Navbar stays dark in dark mode (doesn't use --primary which becomes light blue) */
+[data-theme="dark"] .app-header,
+[data-theme="dark"] .main-header,
+[data-theme="dark"] .top-header,
+[data-theme="dark"] header.main-header {
+  background: linear-gradient(135deg, #051d2e, #0a2f4a) !important;
+}
+
+/* ── Buttons ───────────────────────────────────────────── */
+.btn {
+  border-radius: var(--radius) !important;
+  font-family: 'Figtree', sans-serif !important;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.btn-primary:hover { background: var(--primary-light) !important; }
+
+.btn-warning {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.btn-warning:hover { filter: brightness(1.1); }
+
+.btn-danger {
+  background: var(--danger) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.btn-danger:hover { filter: brightness(1.1); }
+
+.btn-success {
+  background: var(--success) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.btn-success:hover { filter: brightness(1.1); }
+
+.btn-outline {
+  background: transparent !important;
+  border: 2px solid var(--border) !important;
+  color: var(--text-2) !important;
+}
+.btn-outline:hover {
+  background: var(--primary-dim) !important;
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+/* ── Modal Buttons ─────────────────────────────────────── */
+.btn-modal-cancel {
+  background: transparent !important;
+  border: 2px solid var(--border) !important;
+  color: var(--text-2) !important;
+  border-radius: var(--radius) !important;
+  padding: 9px 24px !important;
+  font-family: 'Figtree', sans-serif !important;
+  font-weight: 500 !important;
+  cursor: pointer;
+  transition: all 0.2s !important;
+}
+.btn-modal-cancel:hover {
+  background: rgba(0,0,0,0.05) !important;
+  border-color: var(--text-3) !important;
+}
+[data-theme="dark"] .btn-modal-cancel:hover {
+  background: rgba(255,255,255,0.05) !important;
+}
+
+.btn-modal-confirm {
+  background: var(--primary) !important;
+  border: none !important;
+  color: #fff !important;
+  border-radius: var(--radius) !important;
+  padding: 10px 28px !important;
+  font-family: 'Figtree', sans-serif !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: all 0.2s !important;
+}
+.btn-modal-confirm:hover { background: var(--primary-light) !important; }
+
+.btn-modal-danger {
+  background: var(--danger) !important;
+  border: none !important;
+  color: #fff !important;
+  border-radius: var(--radius) !important;
+  padding: 10px 28px !important;
+  font-family: 'Figtree', sans-serif !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: all 0.2s !important;
+}
+.btn-modal-danger:hover { filter: brightness(1.1); }
+
+.btn-modal-warning {
+  background: var(--accent) !important;
+  border: none !important;
+  color: #fff !important;
+  border-radius: var(--radius) !important;
+  padding: 10px 28px !important;
+  font-family: 'Figtree', sans-serif !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: all 0.2s !important;
+}
+.btn-modal-warning:hover { filter: brightness(1.1); }
+
+/* ── Modals ────────────────────────────────────────────── */
+.modal-overlay {
+  background: rgba(0,0,0,0.5) !important;
+}
+[data-theme="dark"] .modal-overlay {
+  background: rgba(0,0,0,0.72) !important;
+}
+
+.modal {
+  background: var(--surface) !important;
+  color: var(--text-1) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.modal-body {
+  background: var(--surface) !important;
+  color: var(--text-1) !important;
+}
+
+.modal-footer {
+  background: var(--surface-2) !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+.modal-close {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+/* ── Tables ────────────────────────────────────────────── */
+table {
+  background: var(--surface);
+  color: var(--text-1);
+}
+
+thead th {
+  background: var(--surface-2) !important;
+  color: var(--text-2) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+tbody tr {
+  background: var(--surface) !important;
+  transition: background 0.15s;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--surface-2) !important;
+}
+
+tbody tr:hover {
+  background: var(--primary-dim) !important;
+}
+
+tbody td {
+  color: var(--text-1) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* ── Panels / Cards ────────────────────────────────────── */
+.panel,
+.content-panel,
+.split-panel,
+.section-content,
+.proy-folder {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow) !important;
+  border-radius: var(--radius-lg) !important;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.panel-header,
+.proy-folder-header {
+  background: var(--surface-2) !important;
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--text-1) !important;
+}
+
+/* ── Inputs / Selects ──────────────────────────────────── */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-1) !important;
+  border-radius: var(--radius) !important;
+  font-family: 'Figtree', sans-serif !important;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px var(--primary-dim) !important;
+}
+
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="search"],
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background: #1a2f45 !important;
+  border-color: #2a4a6b !important;
+}
+
+/* ── Badges / chips ────────────────────────────────────── */
+.badge-success  { background: var(--success-dim) !important;  color: var(--success) !important; }
+.badge-danger   { background: var(--danger-dim) !important;   color: var(--danger) !important; }
+.badge-warning  { background: var(--accent-dim) !important;   color: var(--accent) !important; }
+.badge-primary  { background: var(--primary-dim) !important;  color: var(--primary) !important; }
+.badge-info     { background: var(--info-dim) !important;     color: var(--info) !important; }
+
+/* ── Dark Mode Toggle Button ───────────────────────────── */
+#themeToggle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+#themeToggle:hover {
+  background: rgba(255,255,255,0.25) !important;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* ── Dark mode body bg ─────────────────────────────────── */
+[data-theme="dark"] body {
+  background: var(--bg) !important;
+}
+
+/* ── Nav Cards (módulo selector) ──────────────────────── */
+.nav-card {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow) !important;
+  border-radius: var(--radius-lg) !important;
+  transition: background 0.3s, border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.nav-card:hover {
+  border-color: var(--primary) !important;
+  box-shadow: var(--shadow-lg) !important;
+  transform: translateY(-3px);
+}
+.nav-card .card-title {
+  color: var(--text-1) !important;
+  font-family: 'Syne', sans-serif !important;
+}
+.nav-card .card-desc {
+  color: var(--text-2) !important;
+}
+.nav-card .card-icon {
+  color: var(--primary) !important;
+}
+
+/* ── Page titles / subtitles ───────────────────────────── */
+.page-title,
+.page-subtitle {
+  color: var(--text-1) !important;
+}
+.page-subtitle {
+  color: var(--text-2) !important;
+}
+
+/* ── Main content area ─────────────────────────────────── */
+.main-center,
+.main-content,
+.content-wrapper {
+  background: var(--bg) !important;
+}
+
+/* ── Footer ────────────────────────────────────────────── */
+footer,
+.footer,
+.app-footer,
+.dashboard-footer {
+  background: var(--surface) !important;
+  border-top: 1px solid var(--border) !important;
+  color: var(--text-2) !important;
+}
+
+/* ── Scrollbar (dark mode) ─────────────────────────────── */
+[data-theme="dark"] ::-webkit-scrollbar { width: 8px; }
+[data-theme="dark"] ::-webkit-scrollbar-track { background: var(--bg); }
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+
+/* ── Dropdown menus ────────────────────────────────────── */
+.dropdown-menu,
+.user-dropdown-menu {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.dropdown-menu a,
+.dropdown-item,
+.user-dropdown-menu a {
+  color: var(--text-1) !important;
+}
+
+.dropdown-menu a:hover,
+.dropdown-item:hover,
+.user-dropdown-menu a:hover {
+  background: var(--primary-dim) !important;
+  color: var(--primary) !important;
+}
+
+/* ── Notifications panel ───────────────────────────────── */
+.notif-panel,
+.notif-dropdown {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.notif-item {
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--text-1) !important;
+}
+
+.notif-item:hover {
+  background: var(--primary-dim) !important;
+}
+
+/* ── Search inputs ─────────────────────────────────────── */
+.search-input,
+.buscar-input {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-1) !important;
+  border-radius: 20px !important;
+}
